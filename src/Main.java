@@ -1,12 +1,10 @@
-
-
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-public class PalindromeChecker {
+class PalindromeChecker {
 
     // Application constants
     private static final String APP_NAME = "Palindrome Checker Application";
@@ -34,6 +32,11 @@ public class PalindromeChecker {
 
         // UC7
         palindromeUsingDeque();
+
+        // UC8
+        palindromeUsingLinkedList();
+
+        System.out.println("Program execution completed.");
     }
 
     // ================= UC1 =================
@@ -46,6 +49,7 @@ public class PalindromeChecker {
 
     // ================= UC2 =================
     private static void checkHardcodedPalindrome() {
+
         String word = "madam";
         String reversed = "";
 
@@ -62,11 +66,12 @@ public class PalindromeChecker {
 
     // ================= UC3 =================
     private static void palindromeUsingReverse() {
+
         String original = "level";
         String reversed = "";
 
         for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+            reversed += original.charAt(i);
         }
 
         if (original.equals(reversed)) {
@@ -78,6 +83,7 @@ public class PalindromeChecker {
 
     // ================= UC4 =================
     private static void palindromeUsingCharArray() {
+
         String text = "radar";
         char[] characters = text.toCharArray();
 
@@ -103,6 +109,7 @@ public class PalindromeChecker {
 
     // ================= UC5 =================
     private static void palindromeUsingStack() {
+
         String text = "civic";
         Stack<Character> stack = new Stack<>();
 
@@ -128,6 +135,7 @@ public class PalindromeChecker {
 
     // ================= UC6 =================
     private static void palindromeUsingQueueAndStack() {
+
         String text = "refer";
 
         Stack<Character> stack = new Stack<>();
@@ -161,15 +169,14 @@ public class PalindromeChecker {
         String text = "noon";
         Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into deque (rear)
         for (int i = 0; i < text.length(); i++) {
             deque.addLast(text.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare front & rear
         while (deque.size() > 1) {
+
             char front = deque.removeFirst();
             char rear = deque.removeLast();
 
@@ -180,11 +187,42 @@ public class PalindromeChecker {
         }
 
         if (isPalindrome) {
-            System.out.println("UC7 Result: \"" + text + "\" is a Palindrome.");
+            System.out.println("UC7 Result: \"" + text + "\" is a Palindrome.\n");
         } else {
-            System.out.println("UC7 Result: \"" + text + "\" is NOT a Palindrome.");
+            System.out.println("UC7 Result: \"" + text + "\" is NOT a Palindrome.\n");
+        }
+    }
+
+    // ================= UC8 =================
+    private static void palindromeUsingLinkedList() {
+
+        String input = "level";
+
+        LinkedList<Character> list = new LinkedList<>();
+
+        for (char c : input.toCharArray()) {
+            list.add(c);
         }
 
-        System.out.println("\nProgram execution completed.");
+        boolean isPalindrome = true;
+
+        while (list.size() > 1) {
+
+            char first = list.removeFirst();
+            char last = list.removeLast();
+
+            if (first != last) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("UC8 Input: \"" + input + "\"");
+
+        if (isPalindrome) {
+            System.out.println("UC8 Result: \"" + input + "\" is a Palindrome.\n");
+        } else {
+            System.out.println("UC8 Result: \"" + input + "\" is NOT a Palindrome.\n");
+        }
     }
 }
